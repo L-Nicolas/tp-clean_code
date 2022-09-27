@@ -14,11 +14,13 @@ public class DrivingLicenceRemovePointsService {
     private final InMemoryDatabase database;
 
     public DrivingLicence removePoints(int points, UUID id) throws ResourceNotFoundException {
-        var drivingLicenceDb = database.findById(id);
 
-        return drivingLicenceDb.map( drivingLicence -> {
-            drivingLicence.withAvailablePoints(drivingLicence.getAvailablePoints() - points);
-            return drivingLicence;
-        }).orElseThrow(() -> new ResourceNotFoundException("License introuvable"));
+        return database.findById(id)
+                .map(licence -> licence.withAvailablePoints(newPointAfterRemove(licence, points)))
+                .orElseThrow(() -> new ResourceNotFoundException("dfsdg"));
+    }
+
+    private int newPointAfterRemove(DrivingLicence drivingLicence, int pointsToRemove) {
+       return Math.max(drivingLicence.getAvailablePoints() - pointsToRemove, 0);
     }
 }

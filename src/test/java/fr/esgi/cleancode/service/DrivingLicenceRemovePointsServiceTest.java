@@ -42,7 +42,7 @@ public class DrivingLicenceRemovePointsServiceTest {
 
         final var actual = service.removePoints(points, id);
 
-        assertThat(actual.getAvailablePoints()).isGreaterThanOrEqualTo(0);
+        assertThat(actual.getAvailablePoints()).isEqualTo(Math.max(drivingLicense.getAvailablePoints() - points, 0));
     }
 
     @Test
