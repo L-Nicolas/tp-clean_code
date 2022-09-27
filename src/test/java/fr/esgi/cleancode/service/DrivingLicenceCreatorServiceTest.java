@@ -30,8 +30,8 @@ public class DrivingLicenceCreatorServiceTest {
     @Test
     void should_create_licence() {
         final var id = UUID.randomUUID();
-        final var SocialSecurityNumber = "18273792889N";
-        final var drivingLicence = DrivingLicence.builder().driverSocialSecurityNumber(SocialSecurityNumber).id(id).build();
+        final var socialSecurityNumber = "18273792889N";
+        final var drivingLicence = DrivingLicence.builder().driverSocialSecurityNumber(socialSecurityNumber).id(id).build();
 
         when(serviceIdGenerator.generateNewDrivingLicenceId()).thenReturn(id);
         when(serviceValidator.isValidSocialSecurityNumber(drivingLicence)).thenReturn(true);
